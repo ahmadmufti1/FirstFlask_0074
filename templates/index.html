@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FirstFlask</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+</head>
+<body>
+  <main class="card">
+    <h1>Form Biodata Mahasiswa</h1>
+
+    <form method="POST" action="/">
+      <div class="form-group">
+        <label for="username">Nama Lengkap</label>
+        <input
+          type="text"id="username" name="username" placeholder="Masukkan nama Anda" value="{{ submitted_name or '' }}" required/>
+      </div>
+
+      <div class="form-group">
+        <label for="nim">NIM</label>
+        <input type="text" id="nim" name="nim" placeholder="Masukkan NIM Anda" value="{{ submitted_nim or '' }}" required/>
+      </div>
+
+      <div class="form-group">
+        <label for="fakultas">Fakultas</label>
+        <input type="text" id="fakultas" name="fakultas" placeholder="Masukkan Fakultas Anda" value="{{ submitted_fakultas or '' }}" required/>
+      </div>
+
+      <div class="form-group">
+        <label for="prodi">Program Studi</label>
+        <input type="text" id="prodi" name="prodi" placeholder="Masukkan Program Studi Anda" value="{{ submitted_prodi or '' }}" required/>
+      </div>
+
+      <button type="submit">Kirim Data</button>
+    </form>
+
+    {% if biodata %}
+      <div class="result-label" role="status">
+        <p><strong>Data berhasil dikirim via POST:</strong></p>
+        <p>Nama: {{ biodata.username }}</p>
+        <p>NIM: {{ biodata.nim }}</p>
+        <p>Fakultas: {{ biodata.fakultas }}</p>
+        <p>Program Studi: {{ biodata.prodi }}</p>
+      </div>
+    {% endif %}
+  </main>
+</body>
+</html>
